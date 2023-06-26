@@ -2,7 +2,7 @@ const styles = {
   list: {
     listStyle: "none",
     margin: "0 auto",
-    width: "fit - content",
+    width: "fit-content",
     textAlign: "left",
   },
 };
