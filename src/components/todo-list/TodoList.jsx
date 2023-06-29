@@ -1,3 +1,5 @@
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 const styles = {
   list: {
     listStyle: "none",
@@ -10,13 +12,15 @@ const styles = {
 
 const TodoList = ({ todos }) => {
   return (
-    <ul style={styles.list}>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          {todo.id} - {todo.text}
-        </li>
-      ))}
-    </ul>
+    <Card style={{ width: '18rem' }}>
+      <ListGroup>
+        {todos.map((todo) => (
+          <ListGroup.Item className ="text-light bg-dark"key={todo.id}>
+            {todo.id} - {todo.text}
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    </Card>
   );
 };
 
