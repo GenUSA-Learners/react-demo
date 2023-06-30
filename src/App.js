@@ -1,20 +1,23 @@
+import { useState } from "react";
 import TodoList from "./components/todo-list";
 import NavBar from "./components/nav-bar";
 import ToDoForm from "./components/to-do-form";
-import todos from "./todos.json";
 
 import "./App.css";
+import { Container } from "react-bootstrap";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
   return (
     <div className="App">
-      <NavBar></NavBar>
-      <h1>ToDo List</h1>
-      <ToDoForm></ToDoForm>
+      <NavBar />
+      <Container className="d-flex justify-content-center my-5">
+        <ToDoForm todos={todos} setTodos={setTodos} />
+      </Container>
       <TodoList todos={todos} />
     </div>
   );
 }
 
 export default App;
-
