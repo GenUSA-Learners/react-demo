@@ -15,9 +15,11 @@ function App() {
       <Container className="d-flex justify-content-center my-5">
         <ToDoForm todos={todos} setTodos={setTodos} />
       </Container>
+      {/* Pass down setTodos as a props argument so we can edit todos  */}
       <TodoList todos={todos} />
     </div>
   );
 }
 
 export default App;
+
