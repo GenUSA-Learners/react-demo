@@ -16,7 +16,7 @@ function App() {
         <ToDoForm todos={todos} setTodos={setTodos} />
       </Container>
       {/* Pass down setTodos as a props argument so we can edit todos  */}
-      <TodoList todos={todos} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
