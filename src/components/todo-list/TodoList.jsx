@@ -18,7 +18,7 @@ const TodoList = ({ todos, setTodos }) => {
       });
       setTodos(filtered);
     },
-    [todos]
+    [todos, setTodos]
   );
 
   // Handle mark as done will create a copy of todos, loop thru and find the
@@ -35,7 +35,7 @@ const TodoList = ({ todos, setTodos }) => {
       });
       setTodos(edited);
     },
-    [todos]
+    [todos, setTodos]
   );
 
   return (
