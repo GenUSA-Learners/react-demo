@@ -1,32 +1,42 @@
+import { useCallback, useEffect } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button, Card, Container } from 'react-bootstrap';
 
 const TodoList = ({ todos, setTodos }) => {
   // Create 2 functional expressions that will handle delete and mark as done
 
+  useEffect(() => {
+    alert(`Your todo list has ${todos.length} todos`);
+  }, [todos]);
   // Handle delete will create a copy of todos, remove the selected one by id,
   // and setTodos with the new array copy minus the deleted one.
-  const deleteTodo = (id) => {
-    const copyOfTodos = [...todos];
-    var filtered = copyOfTodos.filter((todo) => {
-      return todo.id !== id;
-    });
-    setTodos(filtered);
-  };
+  const deleteTodo = useCallback(
+    (id) => {
+      const copyOfTodos = [...todos];
+      var filtered = copyOfTodos.filter((todo) => {
+        return todo.id !== id;
+      });
+      setTodos(filtered);
+    },
+    [todos]
+  );
 
   // Handle mark as done will create a copy of todos, loop thru and find the
   // todo by id, assign true to its done property, and setTodos with the new
   // array copy including the edited one.
-  const markAsDone = (id) => {
-    const copyOfTodos = [...todos];
-    var edited = copyOfTodos.map((todo) => {
-      if (todo.id === id) {
-        todo.done = true;
-      }
-      return todo;
-    });
-    setTodos(edited);
-  };
+  const markAsDone = useCallback(
+    (id) => {
+      const copyOfTodos = [...todos];
+      var edited = copyOfTodos.map((todo) => {
+        if (todo.id === id) {
+          todo.done = true;
+        }
+        return todo;
+      });
+      setTodos(edited);
+    },
+    [todos]
+  );
 
   return (
     <Card style={{ width: 'fit-content', margin: '0 auto' }}>
@@ -41,15 +51,13 @@ const TodoList = ({ todos, setTodos }) => {
             </p>
             <Container className="d-flex justify-content-end">
               {/* Add onClick handlers for deleting and mark as done operations */}
-              {!todo.done ? (
-                <Button
-                  className="mx-1"
-                  variant="danger"
-                  onClick={() => markAsDone(todo.id)}
-                >
-                  Mark As Done
-                </Button>
-              ) : null}
+              <Button
+                className={`mx-1 ${todo.done ? 'hidden' : ''}`}
+                variant="danger"
+                onClick={() => markAsDone(todo.id)}
+              >
+                Mark As Done
+              </Button>
               <Button
                 className="mx-1"
                 variant="primary"
